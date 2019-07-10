@@ -36,6 +36,23 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
+	/** 注入api 如果提示“No Beans Named***" 其实没问题，恶...*/
+	@Autowired
+	EurekaClientOneFeign eurekaClientOneFeign;
+
+	/**
+	 * 调用测试
+	 *
+	 * createBy: 夜斗
+	 * @return 返回远程调用的对象
+	 */
+	@RequestMapping("/test/home")
+	public Object testHome(){
+		// 调用feign,feign调用 eureka-client-one的api
+		return eurekaClientOneFeign.home();
+	}
+
+
 	/**
 	 * 分页查询产品信息
 	 * @param productQuery
